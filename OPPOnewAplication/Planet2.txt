@@ -1,0 +1,4 @@
+Planet "Mars" 1023.11.22 1234.11 
+Planet "Earth" 1980.12.01 12.1 
+Planet "Earth" 1980.12.01 12.1 
+Planet "Mars" 1023.11.22 1234.11 
