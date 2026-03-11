@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="OPPOnewAplication/OPPOnewAplication.vcxproj" Id="b0b28b46-6bce-4d85-9b7e-3960c3a63299" />
+</Solution>
