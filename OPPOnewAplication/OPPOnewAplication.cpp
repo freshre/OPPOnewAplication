@@ -84,6 +84,31 @@ void sortirovkaPlanet(vector<Planet>& planets) {
     }
 }
 
+void displayAllPlanets(vector<Planet>& planets, string& outputFileName) {
+    if (planets.empty()) {
+        cout << "Pusto.\n";
+        return;
+    }
+
+    if (!outputFileName.empty()) {
+        ofstream outputFile(outputFileName);
+        if (!outputFile.is_open()) {
+            cout << "Could not open output file for writing.\n";
+            return;
+        }
+
+        for (size_t i = 0; i < planets.size(); i++) {
+            planets[i].print(outputFile);
+        }
+    }
+
+
+
+    for (size_t i = 0; i < planets.size(); i++) {
+        planets[i].print(cout);
+    }
+}
+
 
 int main() {
     Planet new_Planet;
