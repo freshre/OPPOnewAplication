@@ -128,56 +128,72 @@ void addNewPlanet(vector<Planet>& planets, string& filename) {
 }
 
 int main() {
-    Planet new_Planet;
+    string filename, filename2;
     vector<Planet> planets;
 
-    string filename;
-    string filename2;
-    cout << "Enter filename: ";
+    cout<<"Enter filename for reading: ";
     getline(cin, filename);
-    cout << endl;
-    cout << "Enter filename2: ";
+    cout << "Enter filename2 for waiting: ";
     getline(cin, filename2);
-    cout << endl;
 
     ifstream file(filename);
     if (!file.is_open()) {
-        cout << "Faile is not open: " << filename << endl;
+        cout << "File is not open: " << filename << endl;
         return 1;
     }
 
+    
 
     string line;
     bool Type_Planet = false;
-
-    ofstream outputFile(filename2);
-    if (!outputFile.is_open()) {
-        cout << "Could not open output file for writing.\n";
-        return 1;
-    }
-
     while (getline(file, line)) {
-
+        Planet new_Planet;
         if (new_Planet.parseInput(line)) {
             new_Planet.print(cout);
-            new_Planet.print(outputFile);
             planets.push_back(new_Planet);
             Type_Planet = true;
         }
     }
 
+   
+
     if (!Type_Planet) {
         cout << "No valid planets found in the file.\n";
     }
 
-    cout << endl;
+    int choice;
+    do {
+        cout << "\nMenu:\n";
+        cout << "1. Creation new planet and add to file\n";
+        cout << "2. Print all planets\n";
+        cout << "3. Sort and display planets by radius\n";
+        cout << "4. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+        cin.ignore(); // Ignore the newline after the number input
 
-    sort(planets.begin(), planets.end(), compareByRadius);
+        if (choice == 1) {
+            addNewPlanet(planets, filename2);
+        }
+        else if (choice == 2) {
+            string outputFileName;
+            cout << "Enter filename: ";
+            getline(cin, outputFileName);
+            displayAllPlanets(planets, outputFileName);
+        }
+        else if (choice == 3) {
+            sortirovkaPlanet(planets);
+        }
+        else if (choice == 4) {
+            cout << "Exiting program.\n";
+        }
+        else {
+            cout << "Invalid choice. Please try again.\n";
+        }
 
-    for (size_t i = 0; i < planets.size(); i++) {
-        planets[i].print(cout);
-        planets[i].print(outputFile);
-    }
+    } while (choice != 4);
+
+    return 0;
 
 
     return 0;
