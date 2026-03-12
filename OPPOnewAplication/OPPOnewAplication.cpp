@@ -71,7 +71,18 @@ bool compareByRadius(Planet& a, Planet& b) {
     return a.getRadius() < b.getRadius();
 }
 
+void sortirovkaPlanet(vector<Planet>& planets) {
+    if (planets.empty()) {
+        cout << "Net planet for sort.\n";
+        return;
+    }
 
+    sort(planets.begin(), planets.end(), compareByRadius);
+
+    for (size_t i = 0; i < planets.size(); i++) {
+        planets[i].print(cout);
+    }
+}
 
 
 int main() {
