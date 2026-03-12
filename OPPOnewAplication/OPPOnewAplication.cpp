@@ -109,6 +109,23 @@ void displayAllPlanets(vector<Planet>& planets, string& outputFileName) {
     }
 }
 
+void addNewPlanet(vector<Planet>& planets, string& filename) {
+    Planet new_Planet;
+    string line;
+    cout << "Enter planet data (example: Planet \"Earth\" 2026.03.11 6371.0): ";
+    getline(cin, line);
+
+    if (new_Planet.parseInput(line)) {
+        new_Planet.print(cout);
+        ofstream outputFile(filename, ios::app); // Append mode
+        if (!outputFile.is_open()) {
+            cout << "Failed open faile.\n";
+            return;
+        }
+        new_Planet.print(outputFile);
+        planets.push_back(new_Planet);
+    }
+}
 
 int main() {
     Planet new_Planet;
